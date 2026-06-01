@@ -161,7 +161,7 @@ export default function Component() {
   return (
     <div className="min-h-screen transition-colors bg-zinc-50 dark:bg-[#020202] text-zinc-900 dark:text-white">
       {/* Header */}
-      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-fit px-4">
+      <header className="fixed bottom-6 md:bottom-auto md:top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-fit px-4 transition-all duration-300">
         <nav
           className="flex items-center justify-between gap-6 rounded-full border border-white/10 px-6 py-3 shadow-2xl backdrop-blur-md transition-colors"
           style={{
@@ -218,7 +218,7 @@ export default function Component() {
             {isMenuOpen && (
               <div
                 ref={menuRef}
-                className="absolute top-full right-0 w-[200px] border border-white/10 shadow-2xl mt-4 p-4 rounded-2xl z-[100] backdrop-blur-xl"
+                className="absolute bottom-full right-0 w-[200px] border border-white/10 shadow-2xl mb-4 p-4 rounded-2xl z-[100] backdrop-blur-xl"
                 style={{
                   backgroundColor: isDark ? "rgba(0,0,0,0.8)" : "rgba(255,255,255,0.9)",
                 }}
@@ -308,7 +308,7 @@ export default function Component() {
         </div>
 
         {/* Tagline - Proper Distance Below Hero */}
-        <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
+        <div className="absolute bottom-28 sm:bottom-28 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
           <div className="flex justify-center">
             <BlurText
               text="Crafting digital experiences that feel alive."
@@ -324,7 +324,7 @@ export default function Component() {
         {/* Scroll Indicator */}
         <button
           type="button"
-          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 transition-colors duration-300"
+          className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 transition-colors duration-300"
           aria-label="Scroll down"
         >
           <ChevronDown className="w-5 h-5 md:w-8 md:h-8 text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300" />
