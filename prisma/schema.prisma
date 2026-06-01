@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model Project {
+  id               String         @id @default(cuid())
+  title            String
+  slug             String         @unique
+  shortDescription String
+  fullDescription  String
+  githubUrl        String?
+  liveUrl          String?
+  featured         Boolean        @default(false)
+  status           ProjectStatus  @default(DRAFT)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  images           ProjectImage[]
+}
+
+model ProjectImage {
+  id           String  @id @default(cuid())
+  projectId    String
+  project      Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  imageUrl     String
+  displayOrder Int     @default(0)
+  isCover      Boolean @default(false)
+}
+
+model Skill {
+  id       String @id @default(cuid())
+  name     String
+  category String
+  icon     String @default("Code2")
+}
+
+model TimelineEntry {
+  id          String @id @default(cuid())
+  title       String
+  description String?
+  year        String
+  order       Int    @default(0)
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model SiteSettings {
+  id           String @id @default(cuid())
+  name         String @default("Suchir Reddy")
+  profileImage String?
+  tagline      String?
+  github       String?
+  linkedin     String?
+  twitter      String?
+  email        String?
+  resumeUrl    String?
+}
+
+enum ProjectStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
