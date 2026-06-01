@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 
 // Inline Button component
 const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
@@ -198,62 +198,22 @@ export default function Component() {
             })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="relative md:hidden">
-            <button
-              ref={buttonRef}
-              type="button"
-              className="p-1 transition-colors duration-300 z-50"
-              style={{ color: isDark ? "white" : "black" }}
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6 transition-colors duration-300" strokeWidth={2} />
-              ) : (
-                <Menu className="w-6 h-6 transition-colors duration-300" strokeWidth={2} />
-              )}
-            </button>
-
-            {isMenuOpen && (
-              <div
-                ref={menuRef}
-                className="absolute top-full right-0 w-[200px] border border-white/10 shadow-2xl mt-4 p-4 rounded-2xl z-[100] backdrop-blur-xl"
-                style={{
-                  backgroundColor: isDark ? "rgba(0,0,0,0.8)" : "rgba(255,255,255,0.9)",
-                }}
-              >
-                {menuItems.map((item) => {
-                  const isHighlight = item.href === `#${activeSection}` || (item.href === "#" && activeSection === "");
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="block text-lg font-bold tracking-tight py-2 px-2 cursor-pointer transition-colors duration-300"
-                      style={{
-                        color: isHighlight ? "#C3E41D" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = "#C3E41D";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = isHighlight ? "#C3E41D" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
-                      }}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-
-          {/* Theme Toggle */}
+          {/* Mobile Theme Toggle (Sun/Moon) */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="relative w-12 h-6 rounded-full hover:opacity-80 transition-opacity ml-2"
+            className="md:hidden p-2 rounded-full transition-colors duration-300"
+            style={{ color: isDark ? "white" : "black" }}
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+
+          {/* Desktop Theme Toggle (Pill) */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="hidden md:block relative w-12 h-6 rounded-full hover:opacity-80 transition-opacity ml-2"
             style={{ backgroundColor: isDark ? "hsl(0 0% 25%)" : "hsl(0 0% 80%)" }}
             aria-label="Toggle theme"
           >
@@ -267,6 +227,60 @@ export default function Component() {
           </button>
         </nav>
       </header>
+
+      {/* Mobile Floating Menu Button */}
+      <div className="fixed bottom-6 right-6 z-[60] md:hidden">
+        <button
+          ref={buttonRef}
+          type="button"
+          className="p-3 rounded-full border border-white/10 shadow-2xl backdrop-blur-md transition-colors duration-300 flex items-center justify-center"
+          style={{ 
+            backgroundColor: isDark ? "rgba(0, 0, 0, 0.4)" : "rgba(255, 255, 255, 0.4)",
+            color: isDark ? "white" : "black" 
+          }}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            <X className="w-6 h-6 transition-colors duration-300" strokeWidth={2} />
+          ) : (
+            <Menu className="w-6 h-6 transition-colors duration-300" strokeWidth={2} />
+          )}
+        </button>
+
+        {isMenuOpen && (
+          <div
+            ref={menuRef}
+            className="absolute bottom-full right-0 w-[200px] border border-white/10 shadow-2xl mb-4 p-4 rounded-2xl z-[100] backdrop-blur-xl origin-bottom-right"
+            style={{
+              backgroundColor: isDark ? "rgba(0,0,0,0.8)" : "rgba(255,255,255,0.9)",
+            }}
+          >
+            {menuItems.map((item) => {
+              const isHighlight = item.href === `#${activeSection}` || (item.href === "#" && activeSection === "");
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block text-lg font-bold tracking-tight py-2 px-2 cursor-pointer transition-colors duration-300"
+                  style={{
+                    color: isHighlight ? "#C3E41D" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#C3E41D";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = isHighlight ? "#C3E41D" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
+                  }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
       {/* Hero Section */}
       <main className="relative min-h-screen flex flex-col">
