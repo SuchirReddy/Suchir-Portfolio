@@ -15,7 +15,7 @@ export async function POST(
   await requireAdmin();
   const { projectId } = await params;
   const formData = await request.formData();
-  const files = formData.getAll("files").filter((file): file is File => file instanceof File);
+  const files = formData.getAll("files").filter((file): file is File => typeof file === "object" && file !== null);
 
   if (!files.length) {
     return NextResponse.json({ error: "No images uploaded." }, { status: 400 });
