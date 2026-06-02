@@ -28,12 +28,15 @@ export async function POST(
   const created = [];
 
   for (const [index, file] of files.entries()) {
-    if (!allowedTypes.has(file.type)) {
+    const extension = file.name.split(".").pop()?.toLowerCase() || "";
+    const isImage = file.type.startsWith("image/") || ["png", "jpg", "jpeg", "webp", "gif"].includes(extension);
+
+    if (!isImage) {
       return NextResponse.json({ error: "Only image uploads are allowed." }, { status: 400 });
     }
 
-    const extension = file.name.split(".").pop()?.toLowerCase() || "png";
-    const fileName = `${Date.now()}-${index}.${extension}`;
+    const fileExt = extension || "png";
+    const fileName = `${Date.now()}-${index}.${fileExt}`;
     const bytes = Buffer.from(await file.arrayBuffer());
     await writeFile(path.join(uploadDir, fileName), bytes);
 

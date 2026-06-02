@@ -27,10 +27,16 @@ export function ProjectImageManager({
     setIsUploading(true);
     const formData = new FormData();
     Array.from(files).forEach((file) => formData.append("files", file));
-    await fetch(`/api/admin/projects/${projectId}/images`, {
+    const res = await fetch(`/api/admin/projects/${projectId}/images`, {
       method: "POST",
       body: formData,
     });
+    
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => null);
+      alert(`Upload failed: ${errorData?.error || res.statusText}`);
+    }
+    
     setIsUploading(false);
     router.refresh();
   }
