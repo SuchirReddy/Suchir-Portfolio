@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { NextResponse } from "next/server";
+import { put } from "@vercel/blob";
 
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/db";
@@ -32,15 +33,16 @@ export async function POST(
       return NextResponse.json({ error: "Only image uploads are allowed." }, { status: 400 });
     }
 
-    const bytes = Buffer.from(await file.arrayBuffer());
-    const mimeType = file.type || (extension === "jpg" ? "image/jpeg" : `image/${extension || "png"}`);
-    const base64Image = `data:${mimeType};base64,${bytes.toString("base64")}`;
+    const blob = await put(file.name, file, {
+      access: "public",
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
 
     created.push(
       await prisma.projectImage.create({
         data: {
           projectId,
-          imageUrl: base64Image,
+          imageUrl: blob.url,
           displayOrder: currentCount + index,
           isCover: currentCount === 0 && index === 0,
         },

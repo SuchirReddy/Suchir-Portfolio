@@ -6,6 +6,8 @@ import { ContactSection } from "@/components/contact-section";
 import { getPublicPortfolioData } from "@/lib/public-data";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const data = await getPublicPortfolioData();
 

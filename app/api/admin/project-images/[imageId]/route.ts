@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { del } from "@vercel/blob";
 
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/db";
@@ -9,6 +10,12 @@ export async function DELETE(
 ) {
   await requireAdmin();
   const { imageId } = await params;
+  
+  const image = await prisma.projectImage.findUnique({ where: { id: imageId } });
+  if (image && image.imageUrl.startsWith("https://")) {
+    await del(image.imageUrl, { token: process.env.BLOB_READ_WRITE_TOKEN });
+  }
+
   await prisma.projectImage.delete({ where: { id: imageId } });
   return NextResponse.json({ ok: true });
 }

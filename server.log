@@ -23,3 +23,7 @@
  POST /api/admin/projects/cmpwcaf2h0000l804uxpe96g6/images 303 in 2004ms
  ✓ Compiled /admin/login in 75ms (651 modules)
  GET /admin/login 200 in 262ms
+ ○ Compiling / ...
+ ✓ Compiled / in 863ms (2312 modules)
+ GET / 200 in 14768ms
+[?25h
