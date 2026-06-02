@@ -21,9 +21,6 @@ export async function POST(
     return NextResponse.json({ error: "No images uploaded." }, { status: 400 });
   }
 
-  const uploadDir = path.join(process.cwd(), "public", "uploads", "projects", projectId);
-  await mkdir(uploadDir, { recursive: true });
-
   const currentCount = await prisma.projectImage.count({ where: { projectId } });
   const created = [];
 
@@ -35,16 +32,15 @@ export async function POST(
       return NextResponse.json({ error: "Only image uploads are allowed." }, { status: 400 });
     }
 
-    const fileExt = extension || "png";
-    const fileName = `${Date.now()}-${index}.${fileExt}`;
     const bytes = Buffer.from(await file.arrayBuffer());
-    await writeFile(path.join(uploadDir, fileName), bytes);
+    const mimeType = file.type || (extension === "jpg" ? "image/jpeg" : `image/${extension || "png"}`);
+    const base64Image = `data:${mimeType};base64,${bytes.toString("base64")}`;
 
     created.push(
       await prisma.projectImage.create({
         data: {
           projectId,
-          imageUrl: `/uploads/projects/${projectId}/${fileName}`,
+          imageUrl: base64Image,
           displayOrder: currentCount + index,
           isCover: currentCount === 0 && index === 0,
         },

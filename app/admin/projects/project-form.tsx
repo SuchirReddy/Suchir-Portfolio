@@ -18,18 +18,20 @@ export function ProjectForm({
           <Field label="Title" name="title" defaultValue={project?.title} required />
           <Field label="Slug" name="slug" defaultValue={project?.slug} />
           <Field label="Short Description" name="shortDescription" defaultValue={project?.shortDescription} required />
-          <label className="block text-sm text-white/70">
-            Status
+          <div>
+            <label className="mb-2 block text-sm font-medium">
+              Status
+            </label>
             <select
               name="status"
-              defaultValue={project?.status ?? "DRAFT"}
-              className="mt-2 w-full rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-white outline-none"
+              defaultValue={project?.status ?? "PUBLISHED"}
+              className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 outline-none focus:border-white/20"
             >
               <option className="bg-neutral-950">DRAFT</option>
               <option className="bg-neutral-950">PUBLISHED</option>
               <option className="bg-neutral-950">ARCHIVED</option>
             </select>
-          </label>
+          </div>
           <Field label="GitHub URL" name="githubUrl" defaultValue={project?.githubUrl} />
           <Field label="Live URL" name="liveUrl" defaultValue={project?.liveUrl} />
         </div>

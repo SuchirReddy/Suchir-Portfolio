@@ -1,0 +1,25 @@
+
+> suchir-reddy-portfolio-hero@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://10.66.231.177:3000
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1820ms
+ ○ Compiling /api/admin/projects/[projectId]/images ...
+ ✓ Compiled /api/admin/projects/[projectId]/images in 548ms (376 modules)
+ POST /api/admin/projects/cmpwcaf2h0000l804uxpe96g6/images 303 in 948ms
+ ✓ Compiled /middleware in 78ms (169 modules)
+ ✓ Compiled /admin/login in 260ms (875 modules)
+ GET /admin/login 200 in 449ms
+ POST /api/admin/projects/cmpwcaf2h0000l804uxpe96g6/images 303 in 3823ms
+ GET /admin/login 200 in 56ms
+ ✓ Compiled in 592ms (236 modules)
+ ✓ Compiled in 129ms (236 modules)
+ ✓ Compiled /api/admin/projects/[projectId]/images in 95ms (180 modules)
+ POST /api/admin/projects/cmpwcaf2h0000l804uxpe96g6/images 303 in 2004ms
+ ✓ Compiled /admin/login in 75ms (651 modules)
+ GET /admin/login 200 in 262ms
