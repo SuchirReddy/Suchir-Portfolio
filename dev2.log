@@ -1,0 +1,12 @@
+
+> suchir-reddy-portfolio-hero@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 83401, using available port 3001 instead.
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3001
+   - Network:      http://10.66.231.177:3001
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
