@@ -94,7 +94,7 @@ export function ProjectImageManager({
             {images.map((image, index) => (
               <div key={image.id} className="rounded-xl border border-white/10 bg-black/30 p-3">
                 <div className="relative aspect-video overflow-hidden rounded-lg bg-black">
-                  <Image src={image.imageUrl} alt="" fill className="object-cover" />
+                  <Image src={image.imageUrl} alt="" fill className="object-contain" />
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   <button

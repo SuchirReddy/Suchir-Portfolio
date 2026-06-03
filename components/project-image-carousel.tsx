@@ -22,7 +22,7 @@ export function ProjectImageCarousel({
   const sortedImages = [...images].sort((a, b) => (a.isCover === b.isCover ? 0 : a.isCover ? -1 : 1));
 
   const WindowHeader = () => (
-    <div className="absolute top-0 left-0 right-0 z-20 flex h-8 items-center gap-1.5 bg-zinc-200/50 dark:bg-zinc-800/50 px-3 backdrop-blur-md">
+    <div className="relative z-20 flex h-8 w-full items-center gap-1.5 bg-zinc-200/50 dark:bg-zinc-800/50 px-3 backdrop-blur-md">
       <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
       <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
       <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
@@ -33,12 +33,13 @@ export function ProjectImageCarousel({
     return (
       <div className={`group relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] shadow-2xl ${className}`}>
         <WindowHeader />
-        <div className="aspect-[2560/1664] overflow-hidden pt-8 bg-zinc-100 dark:bg-black/50">
+        <div className="relative overflow-hidden bg-zinc-100 dark:bg-black/50">
           <Image
             src={sortedImages[0].imageUrl}
             alt={title}
-            fill
-            className="object-cover object-top transition-transform duration-700 group-hover:scale-105 !top-8"
+            width={0}
+            height={0}
+            className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 1024px) 100vw, 60vw"
           />
         </div>
@@ -53,17 +54,18 @@ export function ProjectImageCarousel({
   return (
     <div className={`group relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] shadow-2xl ${className}`}>
       <WindowHeader />
-      <div className="aspect-[2560/1664] overflow-hidden relative bg-zinc-100 dark:bg-black/50 pt-8">
+      <div className="relative overflow-hidden bg-zinc-100 dark:bg-black/50">
         <Image
           src={sortedImages[currentIndex].imageUrl}
           alt={`${title} - Image ${currentIndex + 1}`}
-          fill
-          className="object-cover object-top transition-transform duration-700 !top-8"
+          width={0}
+          height={0}
+          className="w-full h-auto transition-transform duration-700"
           sizes="(max-width: 1024px) 100vw, 60vw"
         />
         
         {/* Navigation Arrows */}
-        <div className="absolute inset-0 z-30 flex items-center justify-between px-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 mt-8">
+        <div className="absolute inset-0 z-30 flex items-center justify-between px-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <button
             onClick={prevImage}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md transition-all hover:bg-lime-300/80 hover:text-black hover:scale-110"
