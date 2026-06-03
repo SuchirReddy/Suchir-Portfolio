@@ -16,8 +16,23 @@ export default async function MessagesPage() {
           <article key={message.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
             <div className="flex flex-wrap justify-between gap-3">
               <div>
-                <h2 className="text-lg font-semibold">{message.name}</h2>
-                <p className="text-sm text-white/45">{message.email}</p>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-lg font-semibold">{message.name}</h2>
+                  {message.company && (
+                    <span className="rounded bg-white/10 px-2 py-0.5 text-xs text-white/70">
+                      {message.company}
+                    </span>
+                  )}
+                </div>
+                <div className="mt-1 flex items-center gap-3">
+                  <p className="text-sm text-white/45">{message.email}</p>
+                  {message.mobile && (
+                    <>
+                      <span className="text-white/20">•</span>
+                      <p className="text-sm text-white/45">{message.mobile}</p>
+                    </>
+                  )}
+                </div>
               </div>
               <p className="text-xs text-white/35">{message.createdAt.toLocaleString()}</p>
             </div>
