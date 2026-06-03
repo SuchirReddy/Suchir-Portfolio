@@ -43,7 +43,7 @@ export function ContactSection() {
                 type="text"
                 name="name"
                 required
-                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-black/40 px-4 py-3 text-zinc-900 dark:text-white outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
                 placeholder="Your Name"
               />
             </label>
@@ -53,8 +53,28 @@ export function ContactSection() {
                 type="email"
                 name="email"
                 required
-                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-black/40 px-4 py-3 text-zinc-900 dark:text-white outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
                 placeholder="yourname@example.com"
+              />
+            </label>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <label className="flex flex-col gap-2">
+              <span className="text-sm font-medium text-zinc-700 dark:text-white/70">Mobile Number (Optional)</span>
+              <input
+                type="tel"
+                name="mobile"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                placeholder="+1 234 567 890"
+              />
+            </label>
+            <label className="flex flex-col gap-2">
+              <span className="text-sm font-medium text-zinc-700 dark:text-white/70">Company (Optional)</span>
+              <input
+                type="text"
+                name="company"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                placeholder="Your Company"
               />
             </label>
           </div>
@@ -64,7 +84,7 @@ export function ContactSection() {
               name="message"
               required
               rows={5}
-              className="resize-none rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-black/40 px-4 py-3 text-zinc-900 dark:text-white outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+              className="resize-none rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
               placeholder="How can I help you?"
             />
           </label>

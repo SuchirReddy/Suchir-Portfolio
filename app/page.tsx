@@ -6,6 +6,8 @@ import { ContactSection } from "@/components/contact-section";
 import { getPublicPortfolioData } from "@/lib/public-data";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
+import ProfileCard from "@/components/ui/profile-card";
+
 export const revalidate = 3600;
 
 export default async function Home() {
@@ -18,6 +20,11 @@ export default async function Home() {
       <ProjectsSection projects={data.projects} />
       <JourneySection timeline={data.timeline} />
       <SkillsSection skills={data.skills} />
+      <section className="py-12 md:py-24">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <ProfileCard />
+        </div>
+      </section>
       <ContactSection />
     </div>
   );

@@ -58,6 +58,8 @@ model ContactMessage {
   id        String   @id @default(cuid())
   name      String
   email     String
+  mobile    String?
+  company   String?
   message   String
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())

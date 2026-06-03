@@ -43,6 +43,8 @@ export const timelineSchema = z.object({
 export const contactSchema = z.object({
   name: z.string().min(1).max(120),
   email: z.string().email(),
+  mobile: z.string().optional().or(z.literal("")),
+  company: z.string().optional().or(z.literal("")),
   message: z.string().min(2).max(5000),
 });
 

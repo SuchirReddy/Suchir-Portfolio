@@ -40,3 +40,4 @@ PROJECTS FROM DB: 2 [ 'Medicare', 'Nexora' ]
  ✓ Ready in 1849ms
    Reload env: .env
    Reload env: .env.local
+[?25h

@@ -198,32 +198,15 @@ export default function Component() {
             })}
           </div>
 
-          {/* Mobile Theme Toggle (Sun/Moon) */}
+          {/* Theme Toggle (Sun/Moon) */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="md:hidden p-2 rounded-full transition-colors duration-300"
+            className="p-2 rounded-full transition-colors duration-300 ml-2 hover:opacity-80"
             style={{ color: isDark ? "white" : "black" }}
             aria-label="Toggle theme"
           >
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
-
-          {/* Desktop Theme Toggle (Pill) */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="hidden md:block relative w-12 h-6 rounded-full hover:opacity-80 transition-opacity ml-2"
-            style={{ backgroundColor: isDark ? "hsl(0 0% 25%)" : "hsl(0 0% 80%)" }}
-            aria-label="Toggle theme"
-          >
-            <div
-              className="absolute top-1 left-1 w-4 h-4 rounded-full transition-transform duration-300"
-              style={{
-                backgroundColor: isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
-                transform: isDark ? "translateX(1.5rem)" : "translateX(0)",
-              }}
-            />
           </button>
         </nav>
       </header>
