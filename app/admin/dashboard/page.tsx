@@ -29,8 +29,8 @@ export default async function DashboardPage() {
   return (
     <AdminShell>
       <div className="flex flex-col gap-8">
-        <header className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 shadow-glass backdrop-blur-md">
-          <div className="absolute -mr-16 -mt-16 right-0 top-0 h-64 w-64 rounded-full bg-lime-300/10 blur-3xl" />
+        <header className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 shadow-sm backdrop-blur-sm">
+          <div className="absolute -mr-16 -mt-16 right-0 top-0 h-64 w-64 rounded-full bg-lime-300/10 blur-2xl" />
           <div className="relative z-10">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               {greeting}, <span className="text-lime-300">Suchir</span>
@@ -48,9 +48,9 @@ export default async function DashboardPage() {
               <Link
                 href={card.href}
                 key={card.label}
-                className={`group relative overflow-hidden rounded-3xl border border-white/10 p-6 shadow-glass backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(195,228,29,0.1)] ${card.colSpan} ${card.highlight ? 'bg-lime-400/5' : 'bg-white/[0.02]'}`}
+                className={`group relative overflow-hidden rounded-3xl border border-white/10 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${card.colSpan} ${card.highlight ? 'bg-lime-400/5' : 'bg-white/[0.02]'}`}
               >
-                <div className={`absolute -right-6 -top-6 h-24 w-24 rounded-full blur-2xl transition-all duration-500 group-hover:scale-150 ${card.highlight ? 'bg-lime-400/20' : 'bg-white/5'}`} />
+                <div className={`absolute -right-6 -top-6 h-24 w-24 rounded-full blur-xl transition-all duration-500 group-hover:scale-150 ${card.highlight ? 'bg-lime-400/20' : 'bg-white/5'}`} />
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div className="flex items-start justify-between">
                     <div className="rounded-xl border border-white/10 bg-black/40 p-3 shadow-inner">

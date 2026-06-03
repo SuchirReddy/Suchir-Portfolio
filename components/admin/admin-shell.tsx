@@ -35,12 +35,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Desktop Sidebar (Floating Glass) */}
-      <aside className="fixed inset-y-6 left-6 z-40 hidden w-[260px] flex-col rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl lg:flex">
-        <Link href="/admin/dashboard" className="flex items-center gap-3 text-xl font-bold tracking-tight text-white transition-opacity hover:opacity-80">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-lime-300/20 text-lime-300">
-            <Hexagon className="h-5 w-5" />
+      <aside className="fixed inset-y-6 left-6 z-40 hidden w-[260px] flex-col rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-xl backdrop-blur-md lg:flex">
+        <Link href="/admin/dashboard" className="mt-2 mb-4 flex items-center justify-center text-white transition-opacity hover:opacity-80">
+          <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-white/10 bg-white/5 shadow-sm">
+            <span className="text-5xl" style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', cursive" }}>SR</span>
           </div>
-          Suchir Portfolio
         </Link>
         <nav className="mt-10 flex flex-1 flex-col gap-2">
           {links.map(({ label, href, icon: Icon }) => {
@@ -50,8 +49,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 href={href}
                 key={href}
                 className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${isActive
-                    ? "bg-white/10 text-white shadow-sm"
-                    : "text-white/60 hover:bg-white/5 hover:text-white"
+                  ? "bg-white/10 text-white shadow-sm"
+                  : "text-white/60 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <Icon className={`h-5 w-5 transition-colors ${isActive ? "text-lime-300" : "text-white/40 group-hover:text-white/80"}`} />
@@ -69,7 +68,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-white/10 bg-black/80 px-2 pb-safe pt-2 backdrop-blur-xl lg:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-white/10 bg-black/80 px-2 pb-safe pt-2 backdrop-blur-md lg:hidden">
         {links.map(({ label, href, icon: Icon }) => {
           const isActive = pathname === href;
           return (

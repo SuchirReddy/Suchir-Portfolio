@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 type ProjectImage = {
   id: string;
@@ -21,6 +21,17 @@ export function ProjectImageManager({
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [localImages, setLocalImages] = useState(images);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  function showSuccess(message: string) {
+    setSuccessMessage(message);
+    setTimeout(() => setSuccessMessage(null), 3000);
+  }
+
+  useEffect(() => {
+    setLocalImages(images);
+  }, [images]);
 
   async function upload(files: FileList | null) {
     if (!files?.length) return;
@@ -35,6 +46,14 @@ export function ProjectImageManager({
     if (!res.ok) {
       const errorData = await res.json().catch(() => null);
       alert(`Upload failed: ${errorData?.error || res.statusText}`);
+      setIsUploading(false);
+      return;
+    }
+    
+    const data = await res.json();
+    if (data.images) {
+      setLocalImages(prev => [...prev, ...data.images]);
+      showSuccess("Uploaded successfully ✓");
     }
     
     setIsUploading(false);
@@ -42,11 +61,26 @@ export function ProjectImageManager({
   }
 
   async function remove(id: string) {
+    setLocalImages(prev => prev.filter(img => img.id !== id));
     await fetch(`/api/admin/project-images/${id}`, { method: "DELETE" });
+    showSuccess("Deleted successfully ✓");
     router.refresh();
   }
 
   async function patch(id: string, body: Record<string, unknown>) {
+    setLocalImages(prev => {
+      const updated = prev.map(img => {
+        if (img.id === id) {
+          return { ...img, ...body } as ProjectImage;
+        }
+        if (body.isCover && img.isCover) {
+          return { ...img, isCover: false };
+        }
+        return img;
+      });
+      return updated.sort((a, b) => a.displayOrder - b.displayOrder);
+    });
+    
     await fetch(`/api/admin/project-images/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -86,12 +120,15 @@ export function ProjectImageManager({
         }}
         className="mt-4 rounded-xl border border-dashed border-white/15 p-4"
       >
-        {isUploading ? <p className="text-sm text-lime-200">Uploading...</p> : null}
-        {images.length === 0 ? (
+        <div className="mb-4 flex items-center gap-4">
+          {isUploading ? <p className="text-sm text-lime-200">Uploading...</p> : null}
+          {successMessage ? <p className="text-sm font-medium text-lime-400 transition-opacity">{successMessage}</p> : null}
+        </div>
+        {localImages.length === 0 ? (
           <p className="text-sm text-white/45">No screenshots yet.</p>
         ) : (
           <div className="grid gap-4 md:grid-cols-2">
-            {images.map((image, index) => (
+            {localImages.map((image, index) => (
               <div key={image.id} className="rounded-xl border border-white/10 bg-black/30 p-3">
                 <div className="relative aspect-video overflow-hidden rounded-lg bg-black">
                   <Image src={image.imageUrl} alt="" fill className="object-contain" />
