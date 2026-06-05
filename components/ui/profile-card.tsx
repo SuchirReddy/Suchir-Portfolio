@@ -20,7 +20,7 @@ interface ComponentProps {
 }
 
 export default function ProfileCard({
-  name = "Suchir Reddy",
+  name = "Suchir Reddyy",
   role = "Developer",
   email = "tipireddysuchirreddy@gmail.com",
   avatarSrc = "/founder-portrait.jpg",
