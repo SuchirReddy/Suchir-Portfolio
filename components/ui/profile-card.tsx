@@ -20,7 +20,7 @@ interface ComponentProps {
 }
 
 export default function ProfileCard({
-  name = "Suchir Reddyy",
+  name = "Suchir Reddy",
   role = "Developer",
   email = "tipireddysuchirreddy@gmail.com",
   avatarSrc = "/founder-portrait.jpg",
@@ -82,7 +82,7 @@ export default function ProfileCard({
 
 
           <div className="flex flex-wrap items-center gap-5">
-            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 ring-black/5 dark:ring-white/10">
+            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 ring-black/5 dark:ring-white/10 isolate [transform:translateZ(0)]">
               <Image
                 src={avatarSrc}
                 alt={`${name} avatar`}

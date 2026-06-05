@@ -212,9 +212,9 @@ export function Hero({ settings }: { settings?: SiteSettings | null }) {
               transition={{ duration: 1.25, ease, delay: 0.35 }}
             >
               <div className="absolute -inset-4 rounded-full bg-[conic-gradient(from_180deg,transparent,rgba(211,255,64,0.38),rgba(63,255,225,0.16),transparent)] blur-xl" />
-              <div className="portrait-mask absolute inset-0 overflow-hidden rounded-full">
+              <div className="portrait-mask absolute inset-0 overflow-hidden rounded-full isolate [transform:translateZ(0)]">
                 <Image
-                  src="/founder-portrait.svg"
+                  src="/founder-portrait.jpg"
                   alt="Stylized portrait of Suchir Reddy"
                   fill
                   sizes="(max-width: 768px) 14rem, 20rem"
