@@ -25,7 +25,7 @@ export default function ProfileCard({
   email = "tipireddysuchirreddy@gmail.com",
   avatarSrc = "/founder-portrait.jpg",
   statusText = "Available for work",
-  statusColor = "bg-lime-500",
+  statusColor = "bg-green-500",
   glowText = "Currently High on Creativity",
   className,
 }: ComponentProps) {
