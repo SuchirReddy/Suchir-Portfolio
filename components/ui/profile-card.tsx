@@ -23,7 +23,7 @@ export default function ProfileCard({
   name = "Suchir Reddy",
   role = "Developer",
   email = "tipireddysuchirreddy@gmail.com",
-  avatarSrc = "/founder-portrait.png",
+  avatarSrc = "/founder-portrait.jpg",
   statusText = "Available for work",
   statusColor = "bg-lime-500",
   glowText = "Currently High on Creativity",
@@ -58,7 +58,7 @@ export default function ProfileCard({
       className={cn("relative w-full max-w-xl mx-auto my-12", className)}
     >
 
-      <div className="pointer-events-none absolute inset-x-0 -bottom-10 top-[72%] rounded-[28px] bg-lime-400/90 blur-0 shadow-[0_40px_80px_-16px_rgba(163,230,53,0.8)] z-0" />
+      <div className="pointer-events-none absolute inset-x-0 -bottom-10 top-[72%] rounded-[28px] bg-lime-400/90 blur-0 shadow-[0_40px_80px_-16px_rgba(187,204,215,0.8)] z-0" />
 
 
       <div className="absolute inset-x-0 -bottom-10 mx-auto w-full z-0">

@@ -183,13 +183,13 @@ export default function Component() {
                   href={item.href}
                   className="text-sm font-semibold tracking-wide transition-colors duration-300"
                   style={{
-                    color: isHighlight ? "#C3E41D" : isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)",
+                    color: isHighlight ? "#BBCCD7" : isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#C3E41D";
+                    e.currentTarget.style.color = "#BBCCD7";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = isHighlight ? "#C3E41D" : (isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)");
+                    e.currentTarget.style.color = isHighlight ? "#BBCCD7" : (isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)");
                   }}
                 >
                   {item.label}
@@ -247,13 +247,13 @@ export default function Component() {
                   href={item.href}
                   className="block text-lg font-bold tracking-tight py-2 px-2 cursor-pointer transition-colors duration-300"
                   style={{
-                    color: isHighlight ? "#C3E41D" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
+                    color: isHighlight ? "#BBCCD7" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#C3E41D";
+                    e.currentTarget.style.color = "#BBCCD7";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = isHighlight ? "#C3E41D" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
+                    e.currentTarget.style.color = isHighlight ? "#BBCCD7" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
                   }}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -277,7 +277,7 @@ export default function Component() {
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[18vw] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
-                style={{ color: "#C3E41D", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "#BBCCD7", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
             <div>
@@ -287,7 +287,7 @@ export default function Component() {
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[18vw] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
-                style={{ color: "#C3E41D", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "#BBCCD7", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
 
@@ -295,7 +295,7 @@ export default function Component() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
               <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl bg-white/5 relative pointer-events-auto transition-opacity hover:opacity-90 cursor-pointer">
                 <img
-                  src="/founder-portrait.png"
+                  src="/founder-portrait.jpg"
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

@@ -24,11 +24,11 @@ export function JourneySection({ timeline }: { timeline: TimelineEntry[] }) {
               
               {/* Dot & Line container for desktop */}
               <div className="relative mb-6 hidden md:flex items-center w-full">
-                <span className="relative z-10 h-3 w-3 shrink-0 rounded-full border border-lime-300/40 bg-lime-300/20 shadow-[0_0_12px_rgba(217,255,75,0.4)] transition-transform duration-300 group-hover:scale-125" />
+                <span className="relative z-10 h-3 w-3 shrink-0 rounded-full border border-lime-300/40 bg-lime-300/20 shadow-[0_0_12px_rgba(187,204,215,0.4)] transition-transform duration-300 group-hover:scale-125" />
               </div>
 
               {/* Dot for mobile vertical view */}
-              <span className="absolute -left-5 top-1.5 h-3 w-3 rounded-full border border-lime-300/40 bg-lime-300/20 shadow-[0_0_12px_rgba(217,255,75,0.4)] md:hidden" />
+              <span className="absolute -left-5 top-1.5 h-3 w-3 rounded-full border border-lime-300/40 bg-lime-300/20 shadow-[0_0_12px_rgba(187,204,215,0.4)] md:hidden" />
 
               <div className="flex flex-col gap-1 md:pr-8">
                 <span className="text-sm font-semibold tracking-wider text-lime-600 dark:text-lime-300/80">

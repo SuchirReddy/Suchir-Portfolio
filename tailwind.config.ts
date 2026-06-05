@@ -19,6 +19,17 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        lime: {
+          100: "#EDF1F4",
+          200: "#D4DEE5",
+          300: "#BBCCD7",
+          400: "#9CAFB9",
+          500: "#7E929C",
+          600: "#646973",
+          700: "#4D535C",
+          800: "#3A3E45",
+          900: "#2B2E33",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -34,7 +45,7 @@ const config: Config = {
       },
       boxShadow: {
         "glass": "0 24px 90px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18)",
-        "neon": "0 0 50px rgba(197, 255, 61, 0.25), 0 0 110px rgba(64, 224, 208, 0.16)",
+        "neon": "0 0 50px rgba(187, 204, 215, 0.25), 0 0 110px rgba(187, 204, 215, 0.16)",
       },
       animation: {
         "mesh-shift": "mesh-shift 18s ease-in-out infinite alternate",

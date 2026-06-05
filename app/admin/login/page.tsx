@@ -20,7 +20,7 @@ export default function AdminLoginPage() {
         className="relative z-10 w-full max-w-[420px] rounded-[2rem] border border-white/10 bg-white/[0.02] p-8 shadow-2xl backdrop-blur-xl sm:p-10"
       >
         <div className="mb-10 flex flex-col items-center text-center">
-          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-lime-300/30 bg-lime-300/10 shadow-[0_0_30px_rgba(195,228,29,0.15)] ring-1 ring-lime-300/20">
+          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-lime-300/30 bg-lime-300/10 shadow-[0_0_30px_rgba(187,204,215,0.15)] ring-1 ring-lime-300/20">
             <span className="text-3xl text-lime-300" style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', cursive" }}>SR</span>
           </div>
           <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>

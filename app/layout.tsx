@@ -21,6 +21,7 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Antic&display=swap"
         />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>

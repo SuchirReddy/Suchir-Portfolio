@@ -15,7 +15,7 @@ export function ProjectsSection({ projects }: { projects: ProjectWithImages[] })
     <section id="projects" className="relative z-10 mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12">
       <div className="mb-16 flex flex-col items-center text-center">
         <h2 className="font-display text-4xl font-bold uppercase tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-6xl">
-          Selected <span className="text-lime-500 dark:text-lime-300">Work</span>
+          These are My Selected <span className="text-lime-500 dark:text-lime-300">Works</span>
         </h2>
         <p className="mt-4 max-w-2xl text-zinc-600 dark:text-white/50">
           A showcase of recent products, experiments, and applications I've built.
@@ -32,10 +32,10 @@ export function ProjectsSection({ projects }: { projects: ProjectWithImages[] })
               className={`flex flex-col gap-8 lg:flex-row lg:items-center ${isEven ? "" : "lg:flex-row-reverse"}`}
             >
               {project.images.length > 0 && (
-                <ProjectImageCarousel 
-                  images={project.images} 
-                  title={project.title} 
-                  className="w-full lg:w-3/5" 
+                <ProjectImageCarousel
+                  images={project.images}
+                  title={project.title}
+                  className="w-full lg:w-3/5"
                 />
               )}
               <div className="flex w-full flex-col lg:w-2/5 lg:px-6">

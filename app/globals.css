@@ -7,8 +7,8 @@
   --foreground: 0 0% 98%;
   --border: 0 0% 100% / 0.12;
   --input: 0 0% 100% / 0.12;
-  --ring: 72 100% 64%;
-  --primary: 72 100% 62%;
+  --ring: 204 26% 79%;
+  --primary: 204 26% 79%;
   --primary-foreground: 0 0% 4%;
   --secondary: 180 100% 60%;
   --secondary-foreground: 0 0% 2%;
@@ -42,7 +42,7 @@ a {
 }
 
 ::selection {
-  background: rgba(211, 255, 64, 0.35);
+  background: rgba(187, 204, 215, 0.35);
   color: white;
 }
 
@@ -62,4 +62,14 @@ a {
 .portrait-mask {
   -webkit-mask-image: radial-gradient(circle, black 63%, transparent 64%);
   mask-image: radial-gradient(circle, black 63%, transparent 64%);
+}
+
+@layer utilities {
+  .hero-heading {
+    background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
 }
