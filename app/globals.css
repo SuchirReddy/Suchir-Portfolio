@@ -81,3 +81,29 @@ a {
     color: transparent;
   }
 }
+
+@keyframes text-breathe-dark {
+  0%, 100% {
+    color: #737373;
+  }
+  50% {
+    color: #ffffff;
+  }
+}
+
+@keyframes text-breathe-light {
+  0%, 100% {
+    color: #737373;
+  }
+  50% {
+    color: #000000;
+  }
+}
+
+.animate-text-breathe {
+  animation: text-breathe-light 4s ease-in-out infinite;
+}
+
+.dark .animate-text-breathe {
+  animation: text-breathe-dark 4s ease-in-out infinite;
+}

@@ -75,7 +75,7 @@ const BlurText: React.FC<BlurTextProps> = ({
             filter: inView ? "blur(0px)" : "blur(10px)",
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : `translateY(${direction === "top" ? "-20px" : "20px"})`,
-            transition: `all 0.5s ease-out ${i * delay}ms`,
+            transition: `filter 0.5s ease-out ${i * delay}ms, opacity 0.5s ease-out ${i * delay}ms, transform 0.5s ease-out ${i * delay}ms`,
           }}
         >
           {segment}
@@ -312,7 +312,7 @@ export default function Component() {
               delay={150}
               animateBy="words"
               direction="top"
-              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-neutral-500 hover:text-black dark:hover:text-white"
+              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center animate-text-breathe"
               style={{ fontFamily: "'Antic', sans-serif" }}
             />
           </div>

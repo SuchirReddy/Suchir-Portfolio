@@ -54,7 +54,6 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
             return (
               <motion.div
                 key={milestone.id}
-                layout
                 onClick={() => setSelectedIndex(isActive ? null : index)}
                 className={cn(
                   "relative shrink-0 cursor-pointer snap-center rounded-3xl transition-all duration-500 ease-out",
@@ -65,7 +64,7 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
                 )}
               >
                 {/* Collapsed State Header (Always visible) */}
-                <motion.div layout="position" className="p-6 relative z-10">
+                <div className="p-6 relative z-10">
                   <div className="flex items-center justify-between mb-4">
                     <span className={cn(
                       "text-xs font-bold tracking-widest uppercase transition-colors flex items-center gap-2",
@@ -90,7 +89,7 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
                       Explore <ChevronRight className="w-3 h-3 ml-1" />
                     </div>
                   )}
-                </motion.div>
+                </div>
 
                 {/* Expanded State Content */}
                 <AnimatePresence>
