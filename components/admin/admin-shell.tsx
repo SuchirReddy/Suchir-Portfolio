@@ -17,10 +17,11 @@ import { logoutAction } from "@/app/admin/actions";
 
 const links = [
   { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+  { label: "Hero", href: "/admin/hero", icon: Hexagon },
   { label: "Projects", href: "/admin/projects", icon: FolderGit2 },
+  { label: "Journey", href: "/admin/journey", icon: GitCommitHorizontal },
   { label: "Skills", href: "/admin/skills", icon: Code2 },
-  { label: "Timeline", href: "/admin/timeline", icon: GitCommitHorizontal },
-  { label: "Messages", href: "/admin/messages", icon: MessageSquareText },
+  { label: "Contact", href: "/admin/messages", icon: MessageSquareText },
   { label: "Settings", href: "/admin/settings", icon: Settings },
 ];
 

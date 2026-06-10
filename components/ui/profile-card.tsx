@@ -58,16 +58,17 @@ export default function ProfileCard({
       className={cn("relative w-full max-w-xl mx-auto my-12", className)}
     >
 
-      <div className="pointer-events-none absolute inset-x-0 -bottom-10 top-[72%] rounded-[28px] bg-lime-400/90 blur-0 shadow-[0_40px_80px_-16px_rgba(187,204,215,0.8)] z-0" />
+      {/* Ambient background glow */}
+      <div className="pointer-events-none absolute inset-x-0 -bottom-10 top-[72%] rounded-[28px] bg-lime-400/30 dark:bg-lime-400/90 blur-xl shadow-[0_40px_80px_-16px_rgba(163,230,53,0.4)] dark:shadow-[0_40px_80px_-16px_rgba(163,230,53,0.8)] z-0" />
 
 
-      <div className="absolute inset-x-0 -bottom-10 mx-auto w-full z-0">
-        <div className="flex items-center justify-center gap-2 bg-transparent py-3 text-center text-sm font-medium text-black">
-          <Zap className="h-4 w-4" /> {glowText}
+      <div className="absolute inset-x-0 -bottom-14 mx-auto w-full z-0 flex justify-center">
+        <div className="flex items-center justify-center gap-2 bg-zinc-100/80 dark:bg-zinc-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-black/5 dark:border-white/10 text-sm font-medium text-zinc-600 dark:text-zinc-300 shadow-sm">
+          <Zap className="h-4 w-4 text-lime-500" /> {glowText}
         </div>
       </div>
 
-      <Card className="relative z-10 mx-auto w-full max-w-3xl overflow-visible rounded-[28px] border border-black/5 dark:border-0 bg-white dark:bg-[radial-gradient(120%_120%_at_30%_10%,#1a1a1a_0%,#0f0f10_60%,#0b0b0c_100%)] text-zinc-900 dark:text-white shadow-2xl">
+      <Card className="relative z-10 mx-auto w-full max-w-3xl overflow-visible rounded-[28px] border border-black/5 dark:border-white/10 bg-white/90 dark:bg-[#0a0a0a]/80 backdrop-blur-2xl text-zinc-900 dark:text-white shadow-2xl">
         <CardContent className="p-6 sm:p-8">
           <div className="mb-6 flex items-center justify-between text-sm text-zinc-600 dark:text-neutral-300">
             <div className="flex items-center gap-2">

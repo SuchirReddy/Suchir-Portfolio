@@ -34,7 +34,7 @@ export function ContactSection() {
         </p>
       </div>
 
-      <div className="rounded-3xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] p-6 shadow-glass sm:p-10">
+      <div className="rounded-3xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-xl p-6 shadow-2xl sm:p-10">
         <form action={formAction} className="flex flex-col gap-6">
           <div className="grid gap-6 sm:grid-cols-2">
             <label className="flex flex-col gap-2">
@@ -43,7 +43,7 @@ export function ContactSection() {
                 type="text"
                 name="name"
                 required
-                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-all duration-300 focus:border-lime-400 focus:ring-4 focus:ring-lime-400/20"
                 placeholder="Your Name"
               />
             </label>
@@ -53,7 +53,7 @@ export function ContactSection() {
                 type="email"
                 name="email"
                 required
-                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-all duration-300 focus:border-lime-400 focus:ring-4 focus:ring-lime-400/20"
                 placeholder="yourname@example.com"
               />
             </label>
@@ -64,7 +64,7 @@ export function ContactSection() {
               <input
                 type="tel"
                 name="mobile"
-                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-all duration-300 focus:border-lime-400 focus:ring-4 focus:ring-lime-400/20"
                 placeholder="+1 234 567 890"
               />
             </label>
@@ -73,7 +73,7 @@ export function ContactSection() {
               <input
                 type="text"
                 name="company"
-                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-all duration-300 focus:border-lime-400 focus:ring-4 focus:ring-lime-400/20"
                 placeholder="Your Company"
               />
             </label>
@@ -84,7 +84,7 @@ export function ContactSection() {
               name="message"
               required
               rows={5}
-              className="resize-none rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-colors focus:border-lime-500/50 dark:focus:border-lime-300/50"
+              className="resize-none rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-zinc-900 dark:text-white placeholder:text-black/40 dark:placeholder:text-white/30 outline-none transition-all duration-300 focus:border-lime-400 focus:ring-4 focus:ring-lime-400/20"
               placeholder="How can I help you?"
             />
           </label>

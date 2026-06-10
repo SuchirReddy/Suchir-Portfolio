@@ -46,12 +46,43 @@ model Skill {
   icon     String @default("Code2")
 }
 
-model TimelineEntry {
-  id          String @id @default(cuid())
-  title       String
-  description String?
-  year        String
-  order       Int    @default(0)
+model JourneyMilestone {
+  id               String    @id @default(cuid())
+  title            String
+  slug             String    @unique
+  year             String
+  date             DateTime?
+  category         String
+  shortDescription String
+  longStory        String    @db.Text
+  imageUrl         String?
+  metrics          String?   @db.Text
+  status           String    @default("Completed")
+  linkUrl          String?
+  displayOrder     Int       @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model JourneyStat {
+  id           String @id @default(cuid())
+  label        String
+  value        String
+  displayOrder Int    @default(0)
+}
+
+model JourneyLesson {
+  id           String @id @default(cuid())
+  title        String
+  description  String @db.Text
+  displayOrder Int    @default(0)
+}
+
+model JourneySettings {
+  id                String @id @default(cuid())
+  visionTitle       String @default("Building products, systems, and AI experiences")
+  visionSubtitle    String @default("that help founders move faster.")
+  visionDescription String? @db.Text
 }
 
 model ContactMessage {

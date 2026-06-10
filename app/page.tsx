@@ -8,6 +8,7 @@ import { getPublicPortfolioData } from "@/lib/public-data";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
 import ProfileCard from "@/components/ui/profile-card";
+import { Footer } from "@/components/footer";
 
 export const revalidate = 3600;
 
@@ -15,19 +16,25 @@ export default async function Home() {
   const data = await getPublicPortfolioData();
 
   return (
-    <div className="bg-zinc-50 dark:bg-[#020202] text-zinc-900 dark:text-white selection:bg-[#BBCCD7]/30 selection:text-white transition-colors duration-500">
+    <div className="bg-zinc-50 dark:bg-[#020202] text-zinc-900 dark:text-white selection:bg-[#A3E635]/30 selection:text-white transition-colors duration-500">
       <ScrollToTop />
       <Hero />
       <HeroSection />
       <ProjectsSection projects={data.projects} />
-      <JourneySection timeline={data.timeline} />
+      <JourneySection 
+        milestones={data.journeyMilestones} 
+        stats={data.journeyStats} 
+        lessons={data.journeyLessons} 
+        settings={data.journeySettings} 
+      />
       <SkillsSection skills={data.skills} />
-      <section className="py-12 md:py-24">
+      <section className="py-12 md:py-32 mb-16">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <ProfileCard />
         </div>
       </section>
       <ContactSection />
+      <Footer />
     </div>
   );
 }

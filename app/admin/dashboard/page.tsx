@@ -10,14 +10,14 @@ export default async function DashboardPage() {
   const [projects, skills, timeline, unreadMessages] = await Promise.all([
     prisma.project.count(),
     prisma.skill.count(),
-    prisma.timelineEntry.count(),
+    prisma.journeyMilestone.count(),
     prisma.contactMessage.count({ where: { isRead: false } }),
   ]);
 
   const cards = [
     { label: "Projects", value: projects, href: "/admin/projects", icon: FolderGit2, colSpan: "col-span-1 sm:col-span-2 lg:col-span-1" },
     { label: "Skills", value: skills, href: "/admin/skills", icon: Code2, colSpan: "col-span-1" },
-    { label: "Timeline", value: timeline, href: "/admin/timeline", icon: GitCommitHorizontal, colSpan: "col-span-1" },
+    { label: "Journey", value: timeline, href: "/admin/journey", icon: GitCommitHorizontal, colSpan: "col-span-1" },
     { label: "Unread Messages", value: unreadMessages, href: "/admin/messages", icon: MessageSquareText, colSpan: "col-span-1 sm:col-span-2 lg:col-span-1", highlight: unreadMessages > 0 },
   ];
 

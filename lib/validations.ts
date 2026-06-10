@@ -32,12 +32,40 @@ export const skillSchema = z.object({
   icon: z.string().optional().default("Code2"),
 });
 
-export const timelineSchema = z.object({
+export const journeyMilestoneSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1).max(140),
-  description: z.string().max(1200).optional().or(z.literal("")),
+  slug: z.string().min(1).max(140),
   year: z.string().min(2).max(30),
-  order: z.coerce.number().int().default(0),
+  date: z.string().optional().or(z.literal("")),
+  category: z.string().min(1).max(80),
+  shortDescription: z.string().max(300),
+  longStory: z.string().max(10000),
+  metrics: z.string().max(2000).optional().or(z.literal("")),
+  imageUrl: z.string().optional().or(z.literal("")),
+  status: z.enum(["Completed", "In Progress", "Future"]).default("Completed"),
+  linkUrl: z.string().optional().or(z.literal("")),
+  displayOrder: z.coerce.number().default(0),
+});
+
+export const journeyStatSchema = z.object({
+  id: z.string().optional(),
+  label: z.string().min(1).max(80),
+  value: z.string().min(1).max(80),
+  displayOrder: z.coerce.number().int().default(0),
+});
+
+export const journeyLessonSchema = z.object({
+  id: z.string().optional(),
+  title: z.string().min(1).max(140),
+  description: z.string().max(2000),
+  displayOrder: z.coerce.number().int().default(0),
+});
+
+export const journeySettingsSchema = z.object({
+  visionTitle: z.string().max(140),
+  visionSubtitle: z.string().max(140),
+  visionDescription: z.string().max(2000).optional().or(z.literal("")),
 });
 
 export const contactSchema = z.object({

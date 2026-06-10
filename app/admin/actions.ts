@@ -12,7 +12,10 @@ import {
   projectSchema,
   settingsSchema,
   skillSchema,
-  timelineSchema,
+  journeyMilestoneSchema,
+  journeyStatSchema,
+  journeyLessonSchema,
+  journeySettingsSchema,
 } from "@/lib/validations";
 
 function readForm(formData: FormData) {
@@ -106,23 +109,79 @@ export async function deleteSkillAction(formData: FormData) {
   revalidatePath("/admin/skills");
 }
 
-export async function saveTimelineAction(formData: FormData) {
+export async function saveJourneyMilestoneAction(formData: FormData) {
   await requireAdmin();
-  const parsed = timelineSchema.parse(readForm(formData));
+  const parsed = journeyMilestoneSchema.parse(readForm(formData));
+  const data = {
+    ...parsed,
+    date: parsed.date ? new Date(parsed.date) : null,
+  };
+  
   if (parsed.id) {
-    await prisma.timelineEntry.update({ where: { id: parsed.id }, data: parsed });
+    await prisma.journeyMilestone.update({ where: { id: parsed.id }, data });
   } else {
-    await prisma.timelineEntry.create({ data: parsed });
+    await prisma.journeyMilestone.create({ data });
   }
   revalidatePath("/");
-  revalidatePath("/admin/timeline");
+  revalidatePath("/admin/journey");
 }
 
-export async function deleteTimelineAction(formData: FormData) {
+export async function deleteJourneyMilestoneAction(formData: FormData) {
   await requireAdmin();
-  await prisma.timelineEntry.delete({ where: { id: String(formData.get("id")) } });
+  await prisma.journeyMilestone.delete({ where: { id: String(formData.get("id")) } });
   revalidatePath("/");
-  revalidatePath("/admin/timeline");
+  revalidatePath("/admin/journey");
+}
+
+export async function saveJourneyStatAction(formData: FormData) {
+  await requireAdmin();
+  const parsed = journeyStatSchema.parse(readForm(formData));
+  if (parsed.id) {
+    await prisma.journeyStat.update({ where: { id: parsed.id }, data: parsed });
+  } else {
+    await prisma.journeyStat.create({ data: parsed });
+  }
+  revalidatePath("/");
+  revalidatePath("/admin/journey");
+}
+
+export async function deleteJourneyStatAction(formData: FormData) {
+  await requireAdmin();
+  await prisma.journeyStat.delete({ where: { id: String(formData.get("id")) } });
+  revalidatePath("/");
+  revalidatePath("/admin/journey");
+}
+
+export async function saveJourneyLessonAction(formData: FormData) {
+  await requireAdmin();
+  const parsed = journeyLessonSchema.parse(readForm(formData));
+  if (parsed.id) {
+    await prisma.journeyLesson.update({ where: { id: parsed.id }, data: parsed });
+  } else {
+    await prisma.journeyLesson.create({ data: parsed });
+  }
+  revalidatePath("/");
+  revalidatePath("/admin/journey");
+}
+
+export async function deleteJourneyLessonAction(formData: FormData) {
+  await requireAdmin();
+  await prisma.journeyLesson.delete({ where: { id: String(formData.get("id")) } });
+  revalidatePath("/");
+  revalidatePath("/admin/journey");
+}
+
+export async function saveJourneySettingsAction(formData: FormData) {
+  await requireAdmin();
+  const parsed = journeySettingsSchema.parse(readForm(formData));
+  const current = await prisma.journeySettings.findFirst();
+  if (current) {
+    await prisma.journeySettings.update({ where: { id: current.id }, data: parsed });
+  } else {
+    await prisma.journeySettings.create({ data: parsed });
+  }
+  revalidatePath("/");
+  revalidatePath("/admin/journey");
 }
 
 export async function markMessageReadAction(formData: FormData) {

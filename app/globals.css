@@ -42,7 +42,7 @@ a {
 }
 
 ::selection {
-  background: rgba(187, 204, 215, 0.35);
+  background: rgba(163, 230, 53, 0.35);
   color: white;
 }
 
@@ -66,7 +66,15 @@ a {
 
 @layer utilities {
   .hero-heading {
-    background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+    background: linear-gradient(180deg, #A3E635 0%, #65a30d 100%); /* Strong lime gradient for light mode */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dark .hero-heading {
+    background: linear-gradient(180deg, #FFFFFF 0%, #A3E635 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

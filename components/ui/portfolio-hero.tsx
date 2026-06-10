@@ -183,13 +183,13 @@ export default function Component() {
                   href={item.href}
                   className="text-sm font-semibold tracking-wide transition-colors duration-300"
                   style={{
-                    color: isHighlight ? "#BBCCD7" : isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)",
+                    color: isHighlight ? "#A3E635" : isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#BBCCD7";
+                    e.currentTarget.style.color = "#A3E635";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = isHighlight ? "#BBCCD7" : (isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)");
+                    e.currentTarget.style.color = isHighlight ? "#A3E635" : (isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)");
                   }}
                 >
                   {item.label}
@@ -217,9 +217,9 @@ export default function Component() {
           ref={buttonRef}
           type="button"
           className="p-3 rounded-full border border-white/10 shadow-2xl backdrop-blur-md transition-colors duration-300 flex items-center justify-center"
-          style={{ 
+          style={{
             backgroundColor: isDark ? "rgba(0, 0, 0, 0.4)" : "rgba(255, 255, 255, 0.4)",
-            color: isDark ? "white" : "black" 
+            color: isDark ? "white" : "black"
           }}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -247,13 +247,13 @@ export default function Component() {
                   href={item.href}
                   className="block text-lg font-bold tracking-tight py-2 px-2 cursor-pointer transition-colors duration-300"
                   style={{
-                    color: isHighlight ? "#BBCCD7" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
+                    color: isHighlight ? "#A3E635" : isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#BBCCD7";
+                    e.currentTarget.style.color = "#A3E635";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = isHighlight ? "#BBCCD7" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
+                    e.currentTarget.style.color = isHighlight ? "#A3E635" : (isDark ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)");
                   }}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -277,7 +277,7 @@ export default function Component() {
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[18vw] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
-                style={{ color: "#BBCCD7", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "#A3E635", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
             <div>
@@ -287,7 +287,7 @@ export default function Component() {
                 animateBy="letters"
                 direction="top"
                 className="font-bold text-[18vw] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap"
-                style={{ color: "#BBCCD7", fontFamily: "'Fira Code', monospace" }}
+                style={{ color: "#A3E635", fontFamily: "'Fira Code', monospace" }}
               />
             </div>
 
@@ -308,7 +308,7 @@ export default function Component() {
         <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
           <div className="flex justify-center">
             <BlurText
-              text="Crafting digital experiences that feel alive."
+              text="Founder @Aveils,Vyuhavarahi - Building AI Products & Systems."
               delay={150}
               animateBy="words"
               direction="top"
