@@ -66,6 +66,7 @@ export const journeySettingsSchema = z.object({
   visionTitle: z.string().max(140),
   visionSubtitle: z.string().max(140),
   visionDescription: z.string().max(2000).optional().or(z.literal("")),
+  showProductMilestones: z.coerce.boolean().default(true),
 });
 
 export const contactSchema = z.object({

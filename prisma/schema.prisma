@@ -33,10 +33,10 @@ model Project {
 model ProjectImage {
   id           String  @id @default(cuid())
   projectId    String
-  project      Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   imageUrl     String
   displayOrder Int     @default(0)
   isCover      Boolean @default(false)
+  project      Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
 
 model Skill {
@@ -54,14 +54,14 @@ model JourneyMilestone {
   date             DateTime?
   category         String
   shortDescription String
-  longStory        String    @db.Text
+  longStory        String
   imageUrl         String?
-  metrics          String?   @db.Text
   status           String    @default("Completed")
-  linkUrl          String?
   displayOrder     Int       @default(0)
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
+  metrics          String?
+  linkUrl          String?
 }
 
 model JourneyStat {
@@ -74,31 +74,32 @@ model JourneyStat {
 model JourneyLesson {
   id           String @id @default(cuid())
   title        String
-  description  String @db.Text
+  description  String
   displayOrder Int    @default(0)
 }
 
 model JourneySettings {
-  id                String @id @default(cuid())
-  visionTitle       String @default("Building products, systems, and AI experiences")
-  visionSubtitle    String @default("that help founders move faster.")
-  visionDescription String? @db.Text
+  id                String  @id @default(cuid())
+  visionTitle       String  @default("Building products, systems, and AI experiences")
+  visionSubtitle    String  @default("that help founders move faster.")
+  visionDescription String?
+  showProductMilestones Boolean @default(true)
 }
 
 model ContactMessage {
   id        String   @id @default(cuid())
   name      String
   email     String
-  mobile    String?
-  company   String?
   message   String
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
+  company   String?
+  mobile    String?
 }
 
 model SiteSettings {
-  id           String @id @default(cuid())
-  name         String @default("Suchir Reddy")
+  id           String  @id @default(cuid())
+  name         String  @default("Suchir Reddy")
   profileImage String?
   tagline      String?
   github       String?

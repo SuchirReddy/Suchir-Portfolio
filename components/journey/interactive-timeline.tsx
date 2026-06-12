@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { JourneyMilestone } from "@prisma/client";
-import { ArrowRight, Calendar, Tag, ChevronRight } from "lucide-react";
+import { ArrowRight, Calendar, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -33,6 +33,18 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
     }
   }, [selectedIndex]);
 
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedIndex]);
+
   return (
     <section className="relative py-24 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-8">
@@ -54,13 +66,12 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
             return (
               <motion.div
                 key={milestone.id}
-                onClick={() => setSelectedIndex(isActive ? null : index)}
+                onClick={() => setSelectedIndex(index)}
                 className={cn(
-                  "relative shrink-0 cursor-pointer snap-center rounded-3xl transition-all duration-500 ease-out",
-                  "border border-black/10 dark:border-white/10 overflow-hidden",
-                  isActive 
-                    ? "w-[85vw] md:w-[800px] bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-2xl shadow-[0_0_50px_rgba(163,230,53,0.15)] ring-1 ring-lime-400/50" 
-                    : "w-[280px] md:w-[320px] bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-md hover:bg-black/5 dark:hover:bg-white/5 opacity-70 hover:opacity-100 hover:scale-[1.02]"
+                  "relative shrink-0 cursor-pointer snap-center rounded-3xl transition-all duration-300 ease-out",
+                  "border border-black/10 dark:border-white/10 overflow-hidden w-[280px] md:w-[320px]",
+                  "bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-md hover:bg-black/5 dark:hover:bg-white/5 opacity-70 hover:opacity-100 hover:scale-[1.02]",
+                  isActive && "ring-1 ring-lime-400/50 shadow-[0_0_30px_rgba(163,230,53,0.1)] opacity-100 scale-[1.02]"
                 )}
               >
                 {/* Collapsed State Header (Always visible) */}
@@ -78,82 +89,16 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
                   </div>
                   
                   <h3 className={cn(
-                    "font-bold tracking-tight transition-all",
-                    isActive ? "text-2xl md:text-3xl text-zinc-900 dark:text-white mb-2" : "text-xl text-zinc-800 dark:text-white/90"
+                    "font-bold tracking-tight transition-all text-xl",
+                    isActive ? "text-zinc-900 dark:text-white mb-2" : "text-zinc-800 dark:text-white/90"
                   )}>
                     {milestone.title}
                   </h3>
                   
-                  {!isActive && (
-                    <div className="mt-4 flex items-center text-xs font-semibold text-lime-600 dark:text-lime-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                      Explore <ChevronRight className="w-3 h-3 ml-1" />
-                    </div>
-                  )}
+                  <div className="mt-4 flex items-center text-xs font-semibold text-lime-600 dark:text-lime-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                    Explore <ChevronRight className="w-3 h-3 ml-1" />
+                  </div>
                 </div>
-
-                {/* Expanded State Content */}
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="px-6 pb-6 relative z-10"
-                    >
-                      <p className="text-sm md:text-base text-zinc-600 dark:text-white/70 leading-relaxed mb-6">
-                        {milestone.shortDescription}
-                      </p>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Image */}
-                        {milestone.imageUrl && (
-                          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-black/5 dark:border-white/10 bg-zinc-100 dark:bg-white/5">
-                            <Image
-                              src={milestone.imageUrl}
-                              alt={milestone.title}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        )}
-
-                        {/* Details */}
-                        <div className="flex flex-col justify-center space-y-4">
-                          <div>
-                            <h4 className="text-[10px] font-bold tracking-widest text-zinc-400 dark:text-white/40 uppercase mb-2">The Story</h4>
-                            <div className="prose dark:prose-invert prose-sm text-zinc-600 dark:text-white/70">
-                              <p className="whitespace-pre-wrap text-xs md:text-sm">{milestone.longStory}</p>
-                            </div>
-                          </div>
-
-                          {milestone.metrics && (
-                            <div>
-                              <h4 className="text-[10px] font-bold tracking-widest text-zinc-400 dark:text-white/40 uppercase mb-2">Impact</h4>
-                              <div className="space-y-1.5">
-                                {milestone.metrics.split('\n').map((metric, i) => {
-                                  if (!metric.trim()) return null;
-                                  return (
-                                    <div key={i} className="flex items-start gap-2">
-                                      <span className="mt-1 w-1 h-1 rounded-full bg-lime-500 shrink-0" />
-                                      <span className="text-xs text-zinc-600 dark:text-white/80">{metric}</span>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          )}
-
-                          {milestone.linkUrl && (
-                            <a href={milestone.linkUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-lime-600 dark:text-lime-400 text-sm font-bold tracking-wide hover:text-lime-500 transition-colors group mt-2 w-fit">
-                              Visit Link <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
 
                 {/* Ambient glow when active */}
                 {isActive && (
@@ -164,6 +109,109 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
           })}
         </div>
       </div>
+
+      {/* Modal Overlay */}
+      <AnimatePresence>
+        {selectedIndex !== null && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm"
+              onClick={() => setSelectedIndex(null)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0a0a0a] rounded-3xl border border-black/10 dark:border-white/10 shadow-2xl z-10 hide-scrollbar"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              <button
+                onClick={() => setSelectedIndex(null)}
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+              >
+                <X className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+              </button>
+              
+              {/* Content of the selected milestone */}
+              {(() => {
+                const milestone = milestones[selectedIndex];
+                return (
+                  <div className="p-6 sm:p-8 md:p-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="text-sm font-bold tracking-widest uppercase text-lime-500 dark:text-lime-400 flex items-center gap-2">
+                        <Calendar className="w-4 h-4" /> {milestone.year}
+                      </span>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 text-zinc-600 dark:text-white/70 text-xs font-medium tracking-wide uppercase">
+                        {milestone.category}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white mb-4 pr-12">
+                      {milestone.title}
+                    </h3>
+                    
+                    <p className="text-lg text-zinc-600 dark:text-white/70 leading-relaxed mb-8">
+                      {milestone.shortDescription}
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                      {/* Left Column: Image & Links */}
+                      <div className="space-y-6">
+                        {milestone.imageUrl && (
+                          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-100 dark:bg-white/5">
+                            <Image
+                              src={milestone.imageUrl}
+                              alt={milestone.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        )}
+                        {milestone.linkUrl && (
+                          <a href={milestone.linkUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-lime-600 dark:text-lime-400 text-sm font-bold tracking-wide hover:text-lime-500 transition-colors group">
+                            Visit Link <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                          </a>
+                        )}
+                      </div>
+
+                      {/* Right Column: Story & Metrics */}
+                      <div className="flex flex-col space-y-8">
+                        <div>
+                          <h4 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-white/40 uppercase mb-3">The Story</h4>
+                          <div className="prose dark:prose-invert prose-sm text-zinc-600 dark:text-white/70">
+                            <p className="whitespace-pre-wrap text-sm leading-relaxed">{milestone.longStory}</p>
+                          </div>
+                        </div>
+
+                        {milestone.metrics && (
+                          <div>
+                            <h4 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-white/40 uppercase mb-3">Impact</h4>
+                            <div className="space-y-2">
+                              {milestone.metrics.split('\n').map((metric, i) => {
+                                if (!metric.trim()) return null;
+                                return (
+                                  <div key={i} className="flex items-start gap-3">
+                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-lime-500 shrink-0" />
+                                    <span className="text-sm text-zinc-600 dark:text-white/80 leading-relaxed">{metric}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -299,22 +299,41 @@ function LessonForm({ lesson, onCancel }: { lesson?: JourneyLesson, onCancel: ()
 function VisionTab({ settings }: { settings: JourneySettings | null }) {
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-6">Future Vision Settings</h2>
-      <form action={saveJourneySettingsAction} className="space-y-4 max-w-2xl">
-        <div className="space-y-2">
-          <label className="text-sm text-white/70">Vision Title</label>
-          <input required name="visionTitle" defaultValue={settings?.visionTitle || "Building products, systems, and AI experiences"} className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-lime-500" />
+      <h2 className="text-xl font-semibold mb-6">Future Vision & Section Settings</h2>
+      <form action={saveJourneySettingsAction} className="space-y-6 max-w-2xl">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <label className="text-sm text-white/70">Vision Title</label>
+            <input required name="visionTitle" defaultValue={settings?.visionTitle || "Building products, systems, and AI experiences"} className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-lime-500" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm text-white/70">Vision Subtitle</label>
+            <input required name="visionSubtitle" defaultValue={settings?.visionSubtitle || "that help founders move faster."} className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-lime-500" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm text-white/70">Vision Description</label>
+            <textarea name="visionDescription" defaultValue={settings?.visionDescription || ""} rows={4} className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-lime-500" />
+          </div>
         </div>
-        <div className="space-y-2">
-          <label className="text-sm text-white/70">Vision Subtitle</label>
-          <input required name="visionSubtitle" defaultValue={settings?.visionSubtitle || "that help founders move faster."} className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-lime-500" />
+
+        <div className="border-t border-white/10 pt-6 space-y-4">
+          <h3 className="text-lg font-medium text-white">Section Visibility</h3>
+          <div className="flex items-center gap-3">
+            <input 
+              type="checkbox" 
+              name="showProductMilestones" 
+              id="showProductMilestones" 
+              defaultChecked={settings ? settings.showProductMilestones : true} 
+              className="w-4 h-4 rounded border-white/10 bg-black/40 text-lime-500 focus:ring-lime-500 focus:ring-offset-black cursor-pointer" 
+            />
+            <label htmlFor="showProductMilestones" className="text-sm text-white/70 cursor-pointer">
+              Show Product Milestones Section
+            </label>
+          </div>
         </div>
-        <div className="space-y-2">
-          <label className="text-sm text-white/70">Vision Description</label>
-          <textarea name="visionDescription" defaultValue={settings?.visionDescription || ""} rows={4} className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-lime-500" />
-        </div>
+
         <Button type="submit" className="bg-lime-500 text-black hover:bg-lime-400">
-          <Save className="w-4 h-4 mr-2" /> Save Vision Settings
+          <Save className="w-4 h-4 mr-2" /> Save Settings
         </Button>
       </form>
     </div>

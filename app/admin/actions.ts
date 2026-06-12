@@ -173,7 +173,11 @@ export async function deleteJourneyLessonAction(formData: FormData) {
 
 export async function saveJourneySettingsAction(formData: FormData) {
   await requireAdmin();
-  const parsed = journeySettingsSchema.parse(readForm(formData));
+  const formObj = {
+    ...readForm(formData),
+    showProductMilestones: formData.get("showProductMilestones") === "on",
+  };
+  const parsed = journeySettingsSchema.parse(formObj);
   const current = await prisma.journeySettings.findFirst();
   if (current) {
     await prisma.journeySettings.update({ where: { id: current.id }, data: parsed });

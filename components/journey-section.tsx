@@ -22,14 +22,16 @@ export function JourneySection({ milestones, stats, lessons, settings }: Journey
     m.category.toLowerCase().includes("platform")
   );
 
+  const showProducts = settings ? settings.showProductMilestones : true;
+
   return (
-    <div id="journey" className="flex flex-col bg-transparent">
+    <section id="journey" className="flex flex-col bg-transparent">
       <BuildingInPublic />
       <InteractiveTimeline milestones={milestones} />
-      <ProductMilestones products={products} />
+      {showProducts && <ProductMilestones products={products} />}
       <NumbersSection stats={stats} />
       <LessonsLearned lessons={lessons} />
       <FutureVision settings={settings} />
-    </div>
+    </section>
   );
 }
