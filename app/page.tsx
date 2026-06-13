@@ -9,6 +9,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 
 import ProfileCard from "@/components/ui/profile-card";
 import { Footer } from "@/components/footer";
+import { FinalLapSection } from "@/components/final-lap-section";
 
 export const revalidate = 3600;
 
@@ -33,6 +34,7 @@ export default async function Home() {
           <ProfileCard />
         </div>
       </section>
+      <FinalLapSection />
       <ContactSection />
       <Footer />
     </div>
