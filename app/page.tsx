@@ -10,6 +10,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import ProfileCard from "@/components/ui/profile-card";
 import { Footer } from "@/components/footer";
 import { FinalLapSection } from "@/components/final-lap-section";
+import { LoadingScreen } from "@/components/loading-screen";
 
 export const revalidate = 3600;
 
@@ -18,6 +19,7 @@ export default async function Home() {
 
   return (
     <div className="bg-zinc-50 dark:bg-[#020202] text-zinc-900 dark:text-white selection:bg-[#A3E635]/30 selection:text-white transition-colors duration-500">
+      <LoadingScreen />
       <ScrollToTop />
       <Hero />
       <HeroSection />

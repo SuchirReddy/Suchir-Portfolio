@@ -125,7 +125,7 @@ function Scene({ scrollYProgress }: { scrollYProgress: any }) {
       <Environment preset="city" />
 
       {/* The Car Group */}
-      <group position={[carX, -0.9, 0]}>
+      <group position={[carX, -0.75, 0]}>
         <React.Suspense fallback={null}>
           <F1RealMesh wheelRotation={wheelRot} scale={responsiveScale} />
         </React.Suspense>
@@ -134,7 +134,7 @@ function Scene({ scrollYProgress }: { scrollYProgress: any }) {
       </group>
 
       {/* Ground reflections / shadows */}
-      <ContactShadows position={[0, -0.5, 0]} opacity={0.4} scale={20} blur={2} far={2} />
+      <ContactShadows position={[0, -0.6, 0]} opacity={0.4} scale={20} blur={2} far={2} />
     </>
   );
 }
@@ -182,11 +182,11 @@ export function FinalLapSection() {
           <div className="container mx-auto h-full relative">
 
             {/* Unified Bottom Layout for both Desktop and Mobile */}
-            <div className="absolute bottom-8 md:bottom-[10%] left-0 w-full px-2 md:px-12 lg:px-24 pb-2 z-50">
+            <div className="absolute bottom-0 md:bottom-2 left-0 w-full px-2 md:px-12 lg:px-24 pb-4 md:pb-2 z-50">
               <div className="grid grid-cols-3 gap-2 md:gap-8 max-w-5xl mx-auto">
-                <AnimatedCounter value={12} progress={scrollYProgress} triggerStart={0.1} triggerEnd={0.3} label="Projects Built" />
-                <AnimatedCounter value={69} progress={scrollYProgress} triggerStart={0.4} triggerEnd={0.6} label="Ideas Executed" />
-                <AnimatedCounter value={5} progress={scrollYProgress} triggerStart={0.7} triggerEnd={0.9} label="Products Shipped" />
+                <AnimatedCounter value={12} progress={scrollYProgress} triggerStart={0.40} triggerEnd={0.50} label="Projects Built" />
+                <AnimatedCounter value={69} progress={scrollYProgress} triggerStart={0.45} triggerEnd={0.55} label="Ideas Executed" />
+                <AnimatedCounter value={5} progress={scrollYProgress} triggerStart={0.50} triggerEnd={0.60} label="Products Shipped" />
               </div>
             </div>
           </div>
@@ -194,7 +194,10 @@ export function FinalLapSection() {
 
         {/* The Track / Ground Visuals */}
         <div className="absolute bottom-[20%] w-full h-px bg-gradient-to-r from-transparent via-zinc-400 to-transparent dark:via-zinc-600 opacity-20 z-0"></div>
-        <div className="absolute bottom-[18%] w-full border-b-2 border-dashed border-zinc-400 dark:border-zinc-600 opacity-30 z-0"></div>
+        <div
+          className="absolute bottom-[18%] w-full border-b border-solid border-zinc-400 dark:border-zinc-500 opacity-30 z-0"
+          style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}
+        ></div>
 
         {/* 3D Canvas Overlay */}
         <div className="absolute inset-0 z-10 pointer-events-none">
