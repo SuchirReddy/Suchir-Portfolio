@@ -25,6 +25,7 @@ model Project {
   liveUrl          String?
   featured         Boolean        @default(false)
   status           ProjectStatus  @default(DRAFT)
+  displayOrder     Int            @default(0)
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
   images           ProjectImage[]
@@ -101,6 +102,7 @@ model SiteSettings {
   id           String  @id @default(cuid())
   name         String  @default("Suchir Reddy")
   profileImage String?
+  heroImage    String?
   tagline      String?
   github       String?
   linkedin     String?

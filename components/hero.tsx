@@ -141,6 +141,17 @@ export function Hero({ settings }: { settings?: SiteSettings | null }) {
         pointerY.set(((event.clientY - rect.top) / rect.height - 0.5) * 2);
       }}
     >
+      {settings?.heroImage && (
+        <div className="absolute inset-0 opacity-20 mix-blend-luminosity pointer-events-none">
+          <Image
+            src={settings.heroImage}
+            alt="Hero Background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
       <motion.div
         className="pointer-events-none absolute inset-0 animate-mesh-shift opacity-95"
         style={{ x: glowX, y: glowY }}
@@ -214,7 +225,7 @@ export function Hero({ settings }: { settings?: SiteSettings | null }) {
               <div className="absolute -inset-4 rounded-full bg-[conic-gradient(from_180deg,transparent,rgba(211,255,64,0.38),rgba(63,255,225,0.16),transparent)] blur-xl" />
               <div className="portrait-mask absolute inset-0 overflow-hidden rounded-full isolate [transform:translateZ(0)]">
                 <Image
-                  src="/founder-portrait.jpg"
+                  src={settings?.profileImage || "/founder-portrait.jpg"}
                   alt="Stylized portrait of Suchir Reddy"
                   fill
                   sizes="(max-width: 768px) 14rem, 20rem"

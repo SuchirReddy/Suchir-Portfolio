@@ -88,6 +88,11 @@ export const settingsSchema = z.object({
   resumeUrl: z.string().url().optional().or(z.literal("")),
 });
 
+export const heroSettingsSchema = z.object({
+  heroImage: z.string().optional().or(z.literal("")),
+  profileImage: z.string().optional().or(z.literal("")),
+});
+
 export const imageOrderSchema = z.object({
   projectId: z.string(),
   images: z.array(

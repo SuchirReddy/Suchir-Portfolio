@@ -9,7 +9,7 @@ export async function getPublicPortfolioData() {
     prisma.project.findMany({
       where: { status: "PUBLISHED" },
       include: { images: { orderBy: { displayOrder: "asc" } } },
-      orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+      orderBy: [{ displayOrder: "asc" }, { updatedAt: "desc" }],
     }),
     prisma.skill.findMany({ orderBy: [{ category: "asc" }, { name: "asc" }] }),
     prisma.journeyMilestone.findMany({ 

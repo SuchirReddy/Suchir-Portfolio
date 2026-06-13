@@ -68,7 +68,7 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
                 key={milestone.id}
                 onClick={() => setSelectedIndex(index)}
                 className={cn(
-                  "relative shrink-0 cursor-pointer snap-center rounded-3xl transition-all duration-300 ease-out",
+                  "group relative shrink-0 cursor-pointer snap-center rounded-3xl transition-all duration-300 ease-out",
                   "border border-black/10 dark:border-white/10 overflow-hidden w-[280px] md:w-[320px]",
                   "bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-md hover:bg-black/5 dark:hover:bg-white/5 opacity-70 hover:opacity-100 hover:scale-[1.02]",
                   isActive && "ring-1 ring-lime-400/50 shadow-[0_0_30px_rgba(163,230,53,0.1)] opacity-100 scale-[1.02]"
@@ -95,8 +95,8 @@ export function InteractiveTimeline({ milestones }: InteractiveTimelineProps) {
                     {milestone.title}
                   </h3>
                   
-                  <div className="mt-4 flex items-center text-xs font-semibold text-lime-600 dark:text-lime-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                    Explore <ChevronRight className="w-3 h-3 ml-1" />
+                  <div className="mt-4 flex items-center text-[10px] sm:text-xs font-semibold text-lime-600 dark:text-lime-400 uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
+                    Tap to view details <ChevronRight className="w-3 h-3 ml-1" />
                   </div>
                 </div>
 

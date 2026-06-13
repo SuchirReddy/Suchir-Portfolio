@@ -12,7 +12,7 @@ import { requireAdmin } from "@/lib/auth";
 export default async function ProjectsPage() {
   await requireAdmin();
   const projects = await prisma.project.findMany({
-    orderBy: { updatedAt: "desc" },
+    orderBy: [{ displayOrder: "asc" }, { updatedAt: "desc" }],
     include: { images: true },
   });
 
@@ -40,6 +40,28 @@ export default async function ProjectsPage() {
                 <Link href={`/admin/projects/${project.id}`} className="rounded-lg border border-white/10 px-3 py-2 text-sm">
                   Edit
                 </Link>
+                <form action={async (formData) => {
+                  "use server";
+                  const { moveProjectAction } = await import("@/app/admin/actions");
+                  return moveProjectAction(formData);
+                }}>
+                  <input type="hidden" name="id" value={project.id} />
+                  <input type="hidden" name="direction" value="up" />
+                  <SubmitButton variant="secondary" className="px-3 py-2 text-sm">
+                    Move Up
+                  </SubmitButton>
+                </form>
+                <form action={async (formData) => {
+                  "use server";
+                  const { moveProjectAction } = await import("@/app/admin/actions");
+                  return moveProjectAction(formData);
+                }}>
+                  <input type="hidden" name="id" value={project.id} />
+                  <input type="hidden" name="direction" value="down" />
+                  <SubmitButton variant="secondary" className="px-3 py-2 text-sm">
+                    Move Down
+                  </SubmitButton>
+                </form>
                 <form action={toggleProjectFeaturedAction}>
                   <input type="hidden" name="id" value={project.id} />
                   <input type="hidden" name="featured" value={String(project.featured)} />

@@ -47,8 +47,8 @@ export function ProjectsSection({ projects }: { projects: ProjectWithImages[] })
                 <h3 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
                   {project.title}
                 </h3>
-                <p className="mt-4 text-zinc-600 dark:text-white/60 leading-relaxed">
-                  {project.shortDescription}
+                <p className="mt-4 text-zinc-600 dark:text-white/60 leading-relaxed whitespace-pre-wrap">
+                  {project.fullDescription}
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-3">
                   {project.liveUrl && (

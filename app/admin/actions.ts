@@ -16,6 +16,7 @@ import {
   journeyStatSchema,
   journeyLessonSchema,
   journeySettingsSchema,
+  heroSettingsSchema,
 } from "@/lib/validations";
 
 function readForm(formData: FormData) {
@@ -86,6 +87,46 @@ export async function toggleProjectFeaturedAction(formData: FormData) {
   const id = String(formData.get("id"));
   const featured = formData.get("featured") === "true";
   await prisma.project.update({ where: { id }, data: { featured: !featured } });
+  revalidatePath("/");
+  revalidatePath("/admin/projects");
+}
+
+export async function moveProjectAction(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+  const direction = String(formData.get("direction")); // "up" or "down"
+
+  const projects = await prisma.project.findMany({
+    orderBy: [{ displayOrder: "asc" }, { updatedAt: "desc" }],
+  });
+
+  const currentIndex = projects.findIndex(p => p.id === id);
+  if (currentIndex === -1) return;
+
+  if (direction === "up" && currentIndex > 0) {
+    // Swap with previous
+    const temp = projects[currentIndex];
+    projects[currentIndex] = projects[currentIndex - 1];
+    projects[currentIndex - 1] = temp;
+  } else if (direction === "down" && currentIndex < projects.length - 1) {
+    // Swap with next
+    const temp = projects[currentIndex];
+    projects[currentIndex] = projects[currentIndex + 1];
+    projects[currentIndex + 1] = temp;
+  } else {
+    return; // Cannot move
+  }
+
+  // Update all displayOrders to match their new array index
+  await prisma.$transaction(
+    projects.map((p, index) => 
+      prisma.project.update({
+        where: { id: p.id },
+        data: { displayOrder: index }
+      })
+    )
+  );
+
   revalidatePath("/");
   revalidatePath("/admin/projects");
 }
@@ -226,4 +267,23 @@ export async function saveSettingsAction(formData: FormData) {
 
   revalidatePath("/");
   revalidatePath("/admin/settings");
+}
+
+export async function saveHeroSettingsAction(formData: FormData) {
+  await requireAdmin();
+  const parsed = heroSettingsSchema.parse(readForm(formData));
+  const current = await prisma.siteSettings.findFirst();
+  const data = {
+    profileImage: cleanUrl(parsed.profileImage),
+    heroImage: cleanUrl(parsed.heroImage),
+  };
+
+  if (current) {
+    await prisma.siteSettings.update({ where: { id: current.id }, data });
+  } else {
+    await prisma.siteSettings.create({ data: { ...data, name: "Suchir Reddy" } });
+  }
+
+  revalidatePath("/");
+  revalidatePath("/admin/hero");
 }

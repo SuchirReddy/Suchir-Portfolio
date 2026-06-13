@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="w-full relative overflow-hidden border-t border-black/5 dark:border-white/5 bg-zinc-50 dark:bg-[#020202] pt-24 pb-12">
       {/* Massive Background Text */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden flex justify-center pointer-events-none opacity-[0.03] dark:opacity-[0.02]">
+      <div className="absolute top-0 left-0 w-full overflow-hidden flex justify-center pointer-events-none opacity-10 dark:opacity-5">
         <h2 className="font-black text-[20vw] leading-none whitespace-nowrap tracking-tighter uppercase">
           SUCHIR REDDY
         </h2>

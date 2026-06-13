@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-export function LoadingScreen() {
+export function LoadingScreen({ duration = 1500 }: { duration?: number }) {
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,7 +14,6 @@ export function LoadingScreen() {
     window.scrollTo(0, 0);
     
     // Fast premium loading sequence
-    const duration = 1500; // Reduced to 1.5 seconds
     const intervalTime = 30;
     const steps = duration / intervalTime;
     let currentStep = 0;
@@ -54,8 +53,7 @@ export function LoadingScreen() {
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }} // Cinematic wipe up
           className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#020202] text-white overflow-hidden"
         >
-          {/* Subtle background glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lime-500/5 rounded-full blur-[120px] pointer-events-none" />
+          {/* Background glow removed as requested */}
 
           <div className="flex flex-col items-center z-10">
             {/* Branding Name */}
@@ -75,9 +73,9 @@ export function LoadingScreen() {
                 opacity: [0.6, 1, 0.6], 
                 scale: [0.95, 1, 0.95],
                 filter: [
-                  "drop-shadow(0px 0px 0px rgba(163,230,53,0))", 
-                  "drop-shadow(0px 0px 40px rgba(163,230,53,0.4))", 
-                  "drop-shadow(0px 0px 0px rgba(163,230,53,0))"
+                  "drop-shadow(0px 0px 0px rgba(255,255,255,0))", 
+                  "drop-shadow(0px 0px 20px rgba(255,255,255,0.15))", 
+                  "drop-shadow(0px 0px 0px rgba(255,255,255,0))"
                 ]
               }}
               transition={{ 
@@ -88,7 +86,7 @@ export function LoadingScreen() {
               className="relative w-32 h-32 md:w-48 md:h-48"
             >
               <Image 
-                src="/icon.png" 
+                src="/logo-transparent.png" 
                 alt="Suchir Reddy Logo" 
                 fill
                 className="object-contain"
@@ -104,7 +102,7 @@ export function LoadingScreen() {
               className="w-[200px] md:w-[300px] h-[2px] bg-white/10 rounded-full mt-16 overflow-hidden relative"
             >
               <motion.div
-                className="absolute top-0 left-0 h-full bg-lime-500 rounded-full"
+                className="absolute top-0 left-0 h-full bg-white rounded-full"
                 initial={{ width: "0%" }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}

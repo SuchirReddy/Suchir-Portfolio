@@ -40,7 +40,7 @@ export function BuildingInPublic() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg sm:text-2xl lg:text-3xl font-light text-zinc-600 dark:text-white/60 max-w-4xl mx-auto leading-relaxed"
         >
-          From learning web development to building AI products, startups, and ambitious ideas.
+          From Learning things to building AI products, startups, and ambitious ideas.
         </motion.p>
       </div>
     </section>
