@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { 
   Code2, Terminal, Database, Palette, Layers, Cpu, Globe, Server, 
-  Wrench, FileJson, Layout, PenTool, Smartphone, Cloud, Zap, Settings 
+  Wrench, FileJson, Layout, PenTool, Smartphone, Cloud, Zap, Settings,
+  LucideIcon
 } from "lucide-react";
 
-const ICONS: Record<string, React.ElementType> = {
+const ICONS: Record<string, LucideIcon> = {
   Code2, Terminal, Database, Palette, Layers, Cpu, Globe, Server, 
   Wrench, FileJson, Layout, PenTool, Smartphone, Cloud, Zap, Settings
 };
