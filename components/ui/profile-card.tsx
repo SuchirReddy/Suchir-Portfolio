@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
@@ -31,14 +31,22 @@ export default function ProfileCard({
 }: ComponentProps) {
   const [copied, setCopied] = useState(false);
 
-  // Derive a local clock text once per minute
-  const timeText = useMemo(() => {
-    const now = new Date();
-    const h = now.getHours();
-    const m = now.getMinutes().toString().padStart(2, "0");
-    const hour12 = ((h + 11) % 12) + 1;
-    const ampm = h >= 12 ? "PM" : "AM";
-    return `${hour12}:${m}${ampm}`;
+  // Compute the time only on the client to prevent hydration mismatch (React error #418).
+  // Server renders an empty string; client fills it in after mount.
+  const [timeText, setTimeText] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const h = now.getHours();
+      const m = now.getMinutes().toString().padStart(2, "0");
+      const hour12 = ((h + 11) % 12) + 1;
+      const ampm = h >= 12 ? "PM" : "AM";
+      setTimeText(`${hour12}:${m}${ampm}`);
+    };
+    update();
+    const id = setInterval(update, 60_000);
+    return () => clearInterval(id);
   }, []);
 
   const handleCopy = async () => {

@@ -50,7 +50,7 @@ function AnimatedCounter({ value, progress, triggerStart, triggerEnd, label }: {
 
 // --- REAL 3D MODEL ---
 function F1RealMesh({ wheelRotation, scale = 1.1 }: { wheelRotation: number, scale?: number }) {
-  const { scene } = useGLTF("/redbull.glb/source/oracle_redbull_rb19.glb");
+  const { scene } = useGLTF("/models/oracle_redbull_rb19.glb");
 
   useFrame(() => {
     // Traverse carefully to avoid rotating the entire chassis or steering wheels
@@ -78,7 +78,7 @@ function F1RealMesh({ wheelRotation, scale = 1.1 }: { wheelRotation: number, sca
 }
 
 // Preload the model so it's ready immediately
-useGLTF.preload("/redbull.glb/source/oracle_redbull_rb19.glb");
+useGLTF.preload("/models/oracle_redbull_rb19.glb");
 
 // The 3D Scene that connects to Framer Motion scroll
 function Scene({ scrollYProgress }: { scrollYProgress: any }) {
