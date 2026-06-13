@@ -10,7 +10,7 @@ import * as THREE from "three";
 function AnimatedCounter({ value, progress, triggerStart, triggerEnd, label }: { value: number, progress: any, triggerStart: number, triggerEnd: number, label: string }) {
   const mappedProgress = useTransform(progress, [triggerStart, triggerEnd], [0, 1]);
   const springProgress = useSpring(mappedProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-  
+
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function AnimatedCounter({ value, progress, triggerStart, triggerEnd, label }: {
     if (p >= triggerStart) return 1;
     return (p - (triggerStart - 0.05)) / 0.05;
   });
-  
+
   const y = useTransform(progress, (p: number) => {
     if (p < triggerStart - 0.05) return 20;
     if (p >= triggerStart) return 0;
@@ -33,7 +33,7 @@ function AnimatedCounter({ value, progress, triggerStart, triggerEnd, label }: {
   });
 
   return (
-    <motion.div 
+    <motion.div
       style={{ opacity, y }}
       className="flex flex-col items-center justify-center p-2 md:p-4 rounded-xl md:rounded-2xl bg-white/60 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-xl md:shadow-2xl relative overflow-hidden transition-colors duration-500 w-full"
     >
@@ -59,7 +59,7 @@ function F1RealMesh({ wheelRotation, scale = 1.1 }: { wheelRotation: number, sca
       // Match tire, slick, or rim. We removed 'WHEEL' because it often includes the suspension rods/axles in the group.
       if (
         (name.includes("TIRE") || name.includes("SLICK") || name.includes("RIM")) &&
-        !name.includes("STEER") && 
+        !name.includes("STEER") &&
         !name.includes("BASE")
       ) {
         // We removed child.isMesh because the wheels are often Groups (Object3D) rather than raw Meshes.
@@ -100,13 +100,13 @@ function Scene({ scrollYProgress }: { scrollYProgress: any }) {
   useFrame(() => {
     // Get the current scroll value (0 to 1)
     const progress = scrollYProgress.get();
-    
+
     // Drive from just outside the left edge
     const startX = -(viewport.width / 2) - 4;
-    // On mobile, stop the car at x = -2.25 to hit the perfect sweet spot
-    const endX = isMobile ? -2.25 : (viewport.width / 2) + 4;
+    // On mobile, stop the car even earlier (x = -2.5) so the front wing is fully visible on screen
+    const endX = isMobile ? -2.5 : (viewport.width / 2) + 4;
     const totalDistance = endX - startX;
-    
+
     const targetX = startX + progress * totalDistance;
     setCarX(targetX);
 
@@ -120,7 +120,7 @@ function Scene({ scrollYProgress }: { scrollYProgress: any }) {
       <ambientLight intensity={0.4} />
       <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" castShadow />
       <spotLight position={[-5, 5, 5]} intensity={2} color="#A3E635" angle={0.5} penumbra={1} />
-      
+
       {/* Use a studio environment map for great metallic reflections */}
       <Environment preset="city" />
 
@@ -142,22 +142,22 @@ function Scene({ scrollYProgress }: { scrollYProgress: any }) {
 // --- MAIN COMPONENT ---
 export function FinalLapSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative w-full h-[300vh] bg-zinc-50 dark:bg-[#020202] overflow-visible transition-colors duration-500"
     >
       <div className="sticky top-0 w-full h-screen flex flex-col justify-center items-center overflow-hidden">
-        
+
         {/* Headlines */}
         <div className="absolute top-32 w-full text-center z-20 px-4 pointer-events-none">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -180,9 +180,9 @@ export function FinalLapSection() {
         {/* The Metrics Layer */}
         <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end md:block">
           <div className="container mx-auto h-full relative">
-            
+
             {/* Unified Bottom Layout for both Desktop and Mobile */}
-            <div className="absolute bottom-4 md:bottom-8 left-0 w-full px-2 md:px-12 lg:px-24 pb-2 z-50">
+            <div className="absolute bottom-8 md:bottom-[10%] left-0 w-full px-2 md:px-12 lg:px-24 pb-2 z-50">
               <div className="grid grid-cols-3 gap-2 md:gap-8 max-w-5xl mx-auto">
                 <AnimatedCounter value={12} progress={scrollYProgress} triggerStart={0.1} triggerEnd={0.3} label="Projects Built" />
                 <AnimatedCounter value={69} progress={scrollYProgress} triggerStart={0.4} triggerEnd={0.6} label="Ideas Executed" />
@@ -193,7 +193,8 @@ export function FinalLapSection() {
         </div>
 
         {/* The Track / Ground Visuals */}
-        <div className="absolute bottom-[20%] w-full h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-40 z-0"></div>
+        <div className="absolute bottom-[20%] w-full h-px bg-gradient-to-r from-transparent via-zinc-400 to-transparent dark:via-zinc-600 opacity-20 z-0"></div>
+        <div className="absolute bottom-[18%] w-full border-b-2 border-dashed border-zinc-400 dark:border-zinc-600 opacity-30 z-0"></div>
 
         {/* 3D Canvas Overlay */}
         <div className="absolute inset-0 z-10 pointer-events-none">
